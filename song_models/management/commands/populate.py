@@ -35,30 +35,30 @@ class Command(BaseCommand):
         # Crear canciones
         self.stdout.write('Creating songs...')
         song1 = Song.objects.create(
-            title='Here in the real world',
+            title='Here In The Real World',
             artist='Alan Jackson',
             language='EN',
-            audio_file='media/here_in_the_real_world.mp3',
-            lrc_file='media/here_in_the_real_world.lrc',
-            background_image='media/here_in_the_real_world.jpg',
+            audio_file='Alan Jackson - Here In The Real World.mp3',
+            lrc_file='Alan Jackson - Here In The Real World.lrc',
+            background_image='Alan Jackson - Here In The Real World.jpg',
             category='COUNTRY',
         )
         song2 = Song.objects.create(
             title='Super Trouper',
             artist='ABBA',
             language='EN',
-            audio_file='media/ABBA - Super Trouper.mp3',
-            lrc_file='media/ABBA - Super Trouper.lrc',
-            background_image='media/ABBA - Super Trouper.jpg',
+            audio_file='ABBA - Super Trouper.mp3',
+            lrc_file='ABBA - Super Trouper.lrc',
+            background_image='ABBA - Super Trouper.jpg',
             category='POP',
         )
         song3 = Song.objects.create(
             title="Don't Forget to Remember",
             artist='Beegees',
             language='EN',
-            audio_file="media/Beegees - Don't Forget to Remember.mp3",
-            lrc_file="media/Beegees - Don't Forget to Remember.lrc",
-            background_image='media/Beegees - Dont Forget to Remember.jpg',
+            audio_file="Beegees - Don't Forget to Remember.mp3",
+            lrc_file="Beegees - Don't Forget to Remember.lrc",
+            background_image='Beegees - Dont Forget to Remember.jpg',
             category='POP',
         )
         self.stdout.write('Songs created.')
