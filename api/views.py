@@ -71,4 +71,14 @@ class SongUserViewSet(viewsets.ModelViewSet):
         ).order_by('id')
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        song = serializer.validated_data['song']
+        user = self.request.user
+        existing = SongUser.objects.filter(song=song, user=user).first()
+        if existing:
+            existing.correct_guesses = serializer.validated_data.get(
+                'correct_guesses', existing.correct_guesses)
+            existing.wrong_guesses = serializer.validated_data.get(
+                'wrong_guesses', existing.wrong_guesses)
+            existing.save()
+        else:
+            serializer.save(user=user)

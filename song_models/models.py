@@ -53,7 +53,6 @@ class Song(models.Model):
     def __str__(self):
         return f"{self.artist} - {self.title}"
 
-
 class SongUser(models.Model):
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -61,9 +60,24 @@ class SongUser(models.Model):
     correct_guesses = models.IntegerField(default=0)
     wrong_guesses = models.IntegerField(default=0)
 
+    class Meta:
+        unique_together = ('song', 'user')
+
+    def save(self, *args, **kwargs):
+        existing = SongUser.objects.filter(
+            song=self.song, user=self.user
+        ).exclude(pk=self.pk).first()
+        if existing:
+            existing.correct_guesses = self.correct_guesses
+            existing.wrong_guesses = self.wrong_guesses
+            existing.song.number_times_played += 1
+            existing.song.save()
+            existing.save()
+        else:
+            super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.user.username} - {self.song.title}"
-
 
 @receiver(post_save, sender=SongUser)
 def update_number_times_played(sender, instance, created, **kwargs):
