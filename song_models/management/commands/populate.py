@@ -61,6 +61,24 @@ class Command(BaseCommand):
             background_image='Beegees - Dont Forget to Remember.jpg',
             category='POP',
         )
+        Song.objects.create(
+            title='Egoist',
+            artist='Falco',
+            language='DE',
+            audio_file='Falco - Egoist.mp3',
+            lrc_file='Falco - Egoist.lrc',
+            background_image='Falco - Egoist.jpg',
+            category='POP',
+        )
+        Song.objects.create(
+            title='Me Gustas Tu',
+            artist='Manu Chao',
+            language='ES',
+            audio_file='Manu Chao - Me Gustas Tu.mp3',
+            lrc_file='Manu Chao - Me Gustas Tu.lrc',
+            background_image='Manu Chao - Me Gustas Tu.jpg',
+            category='POP',
+        )
         self.stdout.write('Songs created.')
 
         # rellenar SongUser
