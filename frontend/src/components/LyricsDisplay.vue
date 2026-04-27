@@ -58,7 +58,7 @@ async function loadLyrics() {
     const seconds = parseFloat(match[2])
     const time = minutes * 60 + seconds
     const content = match[3].trim()
-    const blankMatch = content.match(/^(.*?)\{(\w+)\}(.*)$/)
+    const blankMatch = content.match(/^(.*?)\{([^}]+)\}(.*)$/)
     if (blankMatch) {
       parsed.push({
         time,
